@@ -23,7 +23,7 @@ func main() {
 	fmt.Println("Server started . . . . !")
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", home)
+	mux.HandleFunc("apix.apigee.com/{$}", home)
 	mux.HandleFunc("/snippet/view", snippetView)
 	mux.HandleFunc("/snippet/create", snippetCreate)
 
