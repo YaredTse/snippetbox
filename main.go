@@ -28,14 +28,21 @@ func snippetCreate(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Display a form form for creating a new snippet . . . . "))
 }
 
+func snippetCreatePost(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Save a new snippet . . . "))
+}
+
 func main() {
 
 	fmt.Println("Server started . . . . !")
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("apix.apigee.com/{$}", home)
-	mux.HandleFunc("/snippet/view/{id}", snippetView)
-	mux.HandleFunc("/snippet/create", snippetCreate)
+
+	mux.HandleFunc("GET /{$}", home)
+	mux.HandleFunc("GET /snippet/view/{id}", snippetView)
+	mux.HandleFunc("GET /snippet/create", snippetCreate)
+
+	mux.HandleFunc("POST /snippet/create", snippetCreatePost)
 
 	log.Println("Starting Server on Port :4000")
 
